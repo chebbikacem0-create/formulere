@@ -2,80 +2,190 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>استمارة التسجيل</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+<title>التسجيل | مسابقة IoT & AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+*{
+    box-sizing:border-box;
+    font-family:'Cairo', sans-serif;
+}
+
 body{
-    background:#0f2027;
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
-    font-family:'Cairo',sans-serif;
 }
-.form-container{
+
+.card{
     background:#fff;
-    padding:30px;
-    border-radius:12px;
-    width:400px;
+    width:420px;
+    border-radius:16px;
+    box-shadow:0 30px 60px rgba(0,0,0,.25);
+    overflow:hidden;
+}
+
+.header{
+    background:linear-gradient(135deg,#2c5364,#203a43);
+    color:#fff;
+    padding:25px;
     text-align:center;
 }
-input,button{
-    width:100%;
-    margin-top:10px;
-    padding:10px;
-    border-radius:8px;
-    border:1px solid #ccc;
+
+.header h1{
+    margin:0;
+    font-size:22px;
+    font-weight:700;
 }
+
+.header p{
+    margin:8px 0 0;
+    font-size:13px;
+    opacity:.9;
+}
+
+.form-body{
+    padding:30px;
+}
+
+.field{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:600;
+    color:#333;
+}
+
+input{
+    width:100%;
+    padding:11px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:14px;
+    transition:.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2c5364;
+    box-shadow:0 0 6px rgba(44,83,100,.4);
+}
+
 button{
+    width:100%;
+    padding:13px;
     background:#2c5364;
     color:#fff;
     border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
     cursor:pointer;
+    transition:.3s;
 }
-#success{
+
+button:hover{
+    background:#203a43;
+}
+
+.footer{
+    text-align:center;
+    font-size:12px;
+    color:#777;
+    margin-top:15px;
+}
+
+.success{
     display:none;
-    color:green;
-    font-weight:bold;
+    padding:40px 30px;
+    text-align:center;
+}
+
+.success h2{
+    color:#2c5364;
+    margin-bottom:10px;
+}
+
+.success p{
+    color:#555;
+    font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="form-container">
-    <h2>استمارة التسجيل</h2>
+<div class="card">
 
-    <form id="form">
-        <input type="text" placeholder="الإسم" required id="first_name">
-        <input type="text" placeholder="اللقب" required id="last_name">
-        <input type="email" placeholder="البريد الإلكتروني" required id="email">
-        <input type="text" placeholder="المعهد" required id="institute">
-        <button type="submit">تسجيل</button>
-    </form>
+    <div class="header">
+        <h1>مسابقة IoT & AI</h1>
+        <p>استمارة التسجيل الرسمية</p>
+    </div>
 
-    <div id="success">✅ تم التسجيل بنجاح</div>
+    <div class="form-body" id="formBox">
+        <form id="form">
+            <div class="field">
+                <label>الإسم</label>
+                <input type="text" id="first_name" required>
+            </div>
+
+            <div class="field">
+                <label>اللقب</label>
+                <input type="text" id="last_name" required>
+            </div>
+
+            <div class="field">
+                <label>البريد الإلكتروني</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="field">
+                <label>المعهد الذي تدرس فيه</label>
+                <input type="text" id="institute" required>
+            </div>
+
+            <button type="submit">تسجيل</button>
+        </form>
+
+        <div class="footer">
+            © 2026 – IoT & AI Challenge
+        </div>
+    </div>
+
+    <div class="success" id="successBox">
+        <h2>✅ تم التسجيل بنجاح</h2>
+        <p>سيتم التواصل معك عبر البريد الإلكتروني</p>
+    </div>
+
 </div>
 
 <script>
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbxG73pLbkyse7Yj2Fxhj2SENnq3lBHAV8nSNqcAoqi-2sWX8Y68RBpo5N2wUrTfDw4LFA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwnak1nIW7HoFu5IzccDRdsWG74djvtWNwb1ytnKBTyDT-k9auIf2BmNLjjYjkPj40Emw/exec", {
         method: "POST",
         body: JSON.stringify({
-            first_name: document.getElementById("first_name").value,
-            last_name: document.getElementById("last_name").value,
-            email: document.getElementById("email").value,
-            institute: document.getElementById("institute").value
+            first_name: first_name.value,
+            last_name: last_name.value,
+            email: email.value,
+            institute: institute.value
         })
-    }).then(res => {
-        document.getElementById("form").style.display="none";
-        document.getElementById("success").style.display="block";
+    }).then(()=>{
+        document.getElementById("formBox").style.display="none";
+        document.getElementById("successBox").style.display="block";
     });
 });
 </script>
 
 </body>
 </html>
+
+
