@@ -177,8 +177,7 @@ button{
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbwnak1nIW7HoFu5IzccDRdsWG74djvtWNwb1ytnKBTyDT-k9auIf2BmNLjjYjkPj40Emw/exec
-", {
+    fetch("https://script.google.com/macros/s/AKfycbwnak1nIW7HoFu5IzccDRdsWG74djvtWNwb1ytnKBTyDT-k9auIf2BmNLjjYjkPj40Emw/exec", {
         method:"POST",
         body:JSON.stringify({
             first_name:first_name.value,
@@ -195,4 +194,5 @@ document.getElementById("form").addEventListener("submit", function(e){
 
 </body>
 </html>
+
 
