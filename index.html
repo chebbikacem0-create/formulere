@@ -160,7 +160,7 @@ button{
 
         <div class="card-header">
             <h2>Formulaire d'inscription</h2>
-            <p id="counter">عدد المسجلين: ...</p>
+            <p id="counter">Nombre d'inscrits : ...</p>
         </div>
 
         <div class="form-body" id="formBox">
@@ -204,11 +204,17 @@ button{
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwDLtgnc84Rml7JaB2eBPnRhmCzv8k5JDmIHRacyC5gqg9BGAXWQ-Zen1Pk4aA3jsj-EA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxs7Cfo0m-WywtgkCOy0RzDR3TgxPjGeyrlyF8HCNStntDUdBquva5w2YsiLQPv4KSiNA/exec";
+fetch(scriptURL)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("counter").innerText =
+      "Nombre d'inscrits : " + data.count;
+  });
 
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
-
+    
     fetch(scriptURL,{
         method:"POST",
         body:JSON.stringify({
@@ -241,5 +247,6 @@ document.getElementById("form").addEventListener("submit", function(e){
 
 </body>
 </html>
+
 
 
