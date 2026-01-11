@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>التسجيل | مسابقة IoT & AI</title>
+<title>Inscription | Concours IoT & IA</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -152,50 +152,49 @@ button{
 
     <div class="brand">
         <h1>IoT & AI Challenge</h1>
-        <p>مسابقة ابتكار في إنترنت الأشياء والذكاء الاصطناعي</p>
+        <p>Concours d'innovation dans l'Internet des objets et l'intelligence artificielle</p>
     </div>
 
     <div class="card">
 
         <div class="card-header">
-            <h2>استمارة التسجيل</h2>
-            <p id="counter">عدد المسجلين: ...</p>
+            <h2>Formulaire d'inscription</h2>
         </div>
 
         <div class="form-body" id="formBox">
             <form id="form">
 
                 <div class="field">
-                    <label>الإسم</label>
+                    <label>Nom</label>
                     <input type="text" id="first_name" required>
                 </div>
 
                 <div class="field">
-                    <label>اللقب</label>
+                    <label>Prenom</label>
                     <input type="text" id="last_name" required>
                 </div>
 
                 <div class="field">
-                    <label>البريد الإلكتروني</label>
+                    <label>Adresse mail</label>
                     <input type="email" id="email" required>
                 </div>
 
                 <div class="field">
-                    <label>المعهد الذي تدرس فيه</label>
+                    <label>lycee</label>
                     <input type="text" id="institute" required>
                 </div>
 
-                <button type="submit">تأكيد التسجيل</button>
+                <button type="submit">Confirmer l'inscription</button>
             </form>
 
             <div class="note">
-                سيتم استخدام بياناتك لأغراض تنظيم المسابقة فقط
+                Vos données seront utilisées uniquement aux fins de l'organisation du concours
             </div>
         </div>
 
         <div class="success" id="successBox">
-            <h3>✅ تم التسجيل بنجاح</h3>
-            <p>سيتم التواصل معك عبر البريد الإلكتروني</p>
+            <h3>Inscription terminée avec succès✅</h3>
+            <p>Vous serez contacté par mail</p>
         </div>
 
     </div>
@@ -203,7 +202,7 @@ button{
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbyOqCWRkN2PeXMqM940LaOAkh5HjPZ68lG1gTCM74SVpoNoPSE2S_zwm8Y4YYPM1SzLNg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwDLtgnc84Rml7JaB2eBPnRhmCzv8k5JDmIHRacyC5gqg9BGAXWQ-Zen1Pk4aA3jsj-EA/exec";
 
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
@@ -219,12 +218,13 @@ document.getElementById("form").addEventListener("submit", function(e){
     })
     .then(res=>res.json())
     .then(data=>{
-        if(data.status==="closed"){
-            alert("❌ تم إغلاق باب التسجيل");
-            return;
-        }
+        if(data.status==="full"){
+    alert("Le nombre maximal de participants a été atteint❌");
+    return;
+}
+
         if(data.status==="duplicate"){
-            alert("⚠️ هذا البريد مسجّل مسبقًا");
+            alert("Ce mail est préenregistré.⚠️");
             return;
         }
         if(data.status==="success"){
@@ -239,3 +239,4 @@ document.getElementById("form").addEventListener("submit", function(e){
 
 </body>
 </html>
+
