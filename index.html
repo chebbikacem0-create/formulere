@@ -9,7 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ========== MOBILE FIRST ========== */
+:root{
+    --primary:#1f3c88;
+    --secondary:#070d59;
+}
 
 *{
     box-sizing:border-box;
@@ -19,57 +22,72 @@
 body{
     margin:0;
     min-height:100vh;
-    background:#0f2027;
+    background:linear-gradient(135deg,var(--secondary),var(--primary));
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:12px;
+    padding:14px;
+}
+
+.container{
+    width:100%;
+    max-width:460px;
+}
+
+.brand{
+    text-align:center;
+    color:#fff;
+    margin-bottom:18px;
+}
+
+.brand h1{
+    margin:0;
+    font-size:22px;
+}
+
+.brand p{
+    font-size:13px;
+    opacity:.9;
 }
 
 .card{
     background:#fff;
-    width:100%;
-    max-width:420px;
-    border-radius:16px;
-    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    border-radius:18px;
+    box-shadow:0 30px 70px rgba(0,0,0,.35);
     overflow:hidden;
 }
 
-/* HEADER */
-.header{
-    background:#203a43;
+.card-header{
+    background:var(--primary);
     color:#fff;
-    padding:20px;
+    padding:22px;
     text-align:center;
 }
 
-.header h1{
+.card-header h2{
     margin:0;
     font-size:18px;
-    font-weight:700;
 }
 
-.header p{
-    margin:6px 0 0;
-    font-size:12px;
+.card-header p{
+    font-size:13px;
+    margin-top:6px;
     opacity:.9;
 }
 
-/* FORM */
 .form-body{
-    padding:22px;
+    padding:26px;
 }
 
 .field{
-    margin-bottom:15px;
+    margin-bottom:16px;
 }
 
 label{
     display:block;
-    margin-bottom:5px;
     font-size:13px;
     font-weight:600;
-    color:#333;
+    margin-bottom:6px;
 }
 
 input{
@@ -82,102 +100,115 @@ input{
 
 input:focus{
     outline:none;
-    border-color:#203a43;
+    border-color:var(--primary);
 }
 
 button{
     width:100%;
     padding:14px;
-    background:#203a43;
+    background:var(--primary);
     color:#fff;
     border:none;
-    border-radius:10px;
+    border-radius:12px;
     font-size:15px;
     font-weight:600;
+    cursor:pointer;
 }
 
-/* SUCCESS */
+.counter{
+    text-align:center;
+    font-size:13px;
+    margin-top:10px;
+    color:#555;
+}
+
+.note{
+    text-align:center;
+    font-size:11px;
+    color:#777;
+    margin-top:12px;
+}
+
 .success{
     display:none;
-    padding:40px 25px;
+    padding:40px 26px;
     text-align:center;
 }
 
-.success h2{
-    color:#203a43;
-    font-size:18px;
+.success h3{
+    color:var(--primary);
 }
 
 .success p{
     font-size:14px;
-    color:#555;
-}
-
-/* ========== DESKTOP ENHANCEMENTS ========== */
-@media (min-width: 768px){
-    body{
-        background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    }
-
-    .header h1{
-        font-size:22px;
-    }
-
-    .card{
-        box-shadow:0 30px 60px rgba(0,0,0,.3);
-    }
+    color:#444;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
 
-    <div class="header">
-        <h1>مسابقة IoT & AI</h1>
-        <p>استمارة التسجيل الرسمية</p>
+    <div class="brand">
+        <h1>IoT & AI Challenge</h1>
+        <p>مسابقة ابتكار في إنترنت الأشياء والذكاء الاصطناعي</p>
     </div>
 
-    <div class="form-body" id="formBox">
-        <form id="form">
+    <div class="card">
 
-            <div class="field">
-                <label>الإسم</label>
-                <input type="text" id="first_name" required>
+        <div class="card-header">
+            <h2>استمارة التسجيل</h2>
+            <p id="counter">عدد المسجلين: ...</p>
+        </div>
+
+        <div class="form-body" id="formBox">
+            <form id="form">
+
+                <div class="field">
+                    <label>الإسم</label>
+                    <input type="text" id="first_name" required>
+                </div>
+
+                <div class="field">
+                    <label>اللقب</label>
+                    <input type="text" id="last_name" required>
+                </div>
+
+                <div class="field">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="field">
+                    <label>المعهد الذي تدرس فيه</label>
+                    <input type="text" id="institute" required>
+                </div>
+
+                <button type="submit">تأكيد التسجيل</button>
+            </form>
+
+            <div class="note">
+                سيتم استخدام بياناتك لأغراض تنظيم المسابقة فقط
             </div>
+        </div>
 
-            <div class="field">
-                <label>اللقب</label>
-                <input type="text" id="last_name" required>
-            </div>
+        <div class="success" id="successBox">
+            <h3>✅ تم التسجيل بنجاح</h3>
+            <p>سيتم التواصل معك عبر البريد الإلكتروني</p>
+        </div>
 
-            <div class="field">
-                <label>البريد الإلكتروني</label>
-                <input type="email" id="email" required>
-            </div>
-
-            <div class="field">
-                <label>المعهد الذي تدرس فيه</label>
-                <input type="text" id="institute" required>
-            </div>
-
-            <button type="submit">تسجيل</button>
-        </form>
-    </div>
-
-    <div class="success" id="successBox">
-        <h2>✅ تم التسجيل</h2>
-        <p>سنقوم بالتواصل معك عبر البريد الإلكتروني</p>
     </div>
 
 </div>
 
 <script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbyOqCWRkN2PeXMqM940LaOAkh5HjPZ68lG1gTCM74SVpoNoPSE2S_zwm8Y4YYPM1SzLNg/exec";
+
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbwnak1nIW7HoFu5IzccDRdsWG74djvtWNwb1ytnKBTyDT-k9auIf2BmNLjjYjkPj40Emw/exec", {
+    fetch(scriptURL,{
         method:"POST",
         body:JSON.stringify({
             first_name:first_name.value,
@@ -185,14 +216,26 @@ document.getElementById("form").addEventListener("submit", function(e){
             email:email.value,
             institute:institute.value
         })
-    }).then(()=>{
-        document.getElementById("formBox").style.display="none";
-        document.getElementById("successBox").style.display="block";
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.status==="closed"){
+            alert("❌ تم إغلاق باب التسجيل");
+            return;
+        }
+        if(data.status==="duplicate"){
+            alert("⚠️ هذا البريد مسجّل مسبقًا");
+            return;
+        }
+        if(data.status==="success"){
+            document.getElementById("formBox").style.display="none";
+            document.getElementById("successBox").style.display="block";
+            document.getElementById("counter").innerText =
+                "عدد المسجلين: " + data.count;
+        }
     });
 });
 </script>
 
 </body>
 </html>
-
-
