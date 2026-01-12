@@ -3,118 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Inscription | IoT & AI Challenge</title>
+<title>IoT & AI Challenge | Inscription</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
-    box-sizing:border-box;
-    font-family:'Cairo', sans-serif;
+  box-sizing:border-box;
+  font-family:'Cairo', sans-serif;
 }
 
 body{
-    margin:0;
-    min-height:100vh;
-    background:
-      linear-gradient(rgba(10,20,40,.85),rgba(10,20,40,.85)),
-      
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:16px;
+  margin:0;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(10,20,40,.85), rgba(10,20,40,.85)),
+    url("background.jpg") center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:16px;
 }
 
 .container{
-    width:100%;
-    max-width:520px;
+  width:100%;
+  max-width:520px;
 }
 
 .card{
-    background:#fff;
-    border-radius:18px;
-    box-shadow:0 30px 70px rgba(0,0,0,.4);
-    overflow:hidden;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 30px 70px rgba(0,0,0,.4);
+  overflow:hidden;
 }
 
 .header{
-    background:#1f3c88;
-    color:#fff;
-    padding:22px;
-    text-align:center;
+  background:#1f3c88;
+  color:#fff;
+  padding:22px;
+  text-align:center;
 }
 
 .header h2{
-    margin:0;
-    font-size:20px;
+  margin:0;
+  font-size:20px;
 }
 
 .header p{
-    font-size:13px;
-    margin-top:6px;
-    opacity:.9;
+  font-size:13px;
+  margin-top:6px;
+  opacity:.9;
 }
 
 .form-body{
-    padding:26px;
+  padding:26px;
 }
 
 .section-title{
-    font-size:14px;
-    font-weight:700;
-    margin:18px 0 10px;
-    color:#1f3c88;
+  font-size:14px;
+  font-weight:700;
+  margin:18px 0 10px;
+  color:#1f3c88;
 }
 
 .field{
-    margin-bottom:14px;
+  margin-bottom:14px;
 }
 
 label{
-    display:block;
-    font-size:13px;
-    font-weight:600;
-    margin-bottom:5px;
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:5px;
 }
 
 input{
-    width:100%;
-    padding:11px;
-    border-radius:10px;
-    border:1px solid #ccc;
-    font-size:14px;
+  width:100%;
+  padding:11px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:14px;
 }
 
 input:focus{
-    outline:none;
-    border-color:#1f3c88;
+  outline:none;
+  border-color:#1f3c88;
 }
 
 button{
-    width:100%;
-    padding:14px;
-    background:#1f3c88;
-    color:#fff;
-    border:none;
-    border-radius:12px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    margin-top:18px;
-}
-
-.counter{
-    text-align:center;
-    font-size:13px;
-    margin-top:8px;
-    color:#eee;
+  width:100%;
+  padding:14px;
+  background:#1f3c88;
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:18px;
 }
 
 .success{
-    display:none;
-    padding:40px 25px;
-    text-align:center;
+  display:none;
+  padding:40px 25px;
+  text-align:center;
 }
 </style>
 </head>
@@ -122,146 +114,87 @@ button{
 <body>
 
 <div class="container">
-
 <div class="card">
 
-    <div class="header">
-        <h2>IoT & AI Challenge</h2>
-        <p>Formulaire d'inscription par équipe</p>
-        <div class="counter" id="counter">Nombre d'équipes : ...</div>
-    </div>
+  <div class="header">
+    <h2>IoT & AI Challenge</h2>
+    <p>Formulaire d'inscription par équipe</p>
+  </div>
 
-    <div class="form-body" id="formBox">
-        <form id="form">
+  <div class="form-body" id="formBox">
+    <form id="form">
 
-            <!-- CHEF -->
-            <div class="section-title">Chef du groupe</div>
+      <div class="section-title">Chef du groupe</div>
+      <div class="field">
+        <label>Nom et Prénom</label>
+        <input type="text" id="chef_name" required>
+      </div>
+      <div class="field">
+        <label>Adresse mail</label>
+        <input type="email" id="chef_email" required>
+      </div>
+      <div class="field">
+        <label>Classe</label>
+        <input type="text" id="chef_class" required>
+      </div>
 
-            <div class="field">
-                <label>Nom et Prénom</label>
-                <input type="text" id="chef_name" required>
-            </div>
+      <div class="section-title">Members</div>
 
-            <div class="field">
-                <label>Adresse mail</label>
-                <input type="email" id="chef_email" required>
-            </div>
+      <div class="field"><label>Membre 1 – Nom & Prénom</label><input type="text" id="m1_name"></div>
+      <div class="field"><label>Membre 1 – Classe</label><input type="text" id="m1_class"></div>
 
-            <div class="field">
-                <label>Classe</label>
-                <input type="text" id="chef_class" required>
-            </div>
+      <div class="field"><label>Membre 2 – Nom & Prénom</label><input type="text" id="m2_name"></div>
+      <div class="field"><label>Membre 2 – Classe</label><input type="text" id="m2_class"></div>
 
-            <!-- MEMBERS -->
-            <div class="section-title">Members</div>
+      <div class="field"><label>Membre 3 – Nom & Prénom</label><input type="text" id="m3_name"></div>
+      <div class="field"><label>Membre 3 – Classe</label><input type="text" id="m3_class"></div>
 
-<!-- MEMBER 1 -->
-<div class="field">
-    <label>Membre 1 – Nom & Prénom</label>
-    <input type="text" id="m1_name">
-</div>
-<div class="field">
-    <label>Membre 1 – Classe</label>
-    <input type="text" id="m1_class">
-</div>
+      <div class="field"><label>Membre 4 – Nom & Prénom</label><input type="text" id="m4_name"></div>
+      <div class="field"><label>Membre 4 – Classe</label><input type="text" id="m4_class"></div>
 
-<!-- MEMBER 2 -->
-<div class="field">
-    <label>Membre 2 – Nom & Prénom</label>
-    <input type="text" id="m2_name">
-</div>
-<div class="field">
-    <label>Membre 2 – Classe</label>
-    <input type="text" id="m2_class">
-</div>
+      <button type="submit">Valider l'inscription</button>
+    </form>
+  </div>
 
-<!-- MEMBER 3 -->
-<div class="field">
-    <label>Membre 3 – Nom & Prénom</label>
-    <input type="text" id="m3_name">
-</div>
-<div class="field">
-    <label>Membre 3 – Classe</label>
-    <input type="text" id="m3_class">
-</div>
-
-<!-- MEMBER 4 -->
-<div class="field">
-    <label>Membre 4 – Nom & Prénom</label>
-    <input type="text" id="m4_name">
-</div>
-<div class="field">
-    <label>Membre 4 – Classe</label>
-    <input type="text" id="m4_class">
-</div>
-
-            <button type="submit">Valider l'inscription</button>
-        </form>
-    </div>
-
-    <div class="success" id="successBox">
-        <h3>✅ Inscription réussie</h3>
-        <p>Nous vous contacterons prochainement par email.</p>
-    </div>
+  <div class="success" id="successBox">
+    <h3>✅ Inscription réussie</h3>
+    <p>Votre équipe a été enregistrée avec succès.</p>
+  </div>
 
 </div>
-
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwI6qZmM3mz3ODNX6VRouI7PC2Os_eqd93Xe2YmywwH1CaHElmjD781RPdQk7L63rN7nA/exec";
-
-fetch(scriptURL)
-  .then(r=>r.json())
-  .then(d=>{
-    document.getElementById("counter").innerText =
-      "Nombre d'équipes : " + d.count;
-  });
+const scriptURL = "PUT_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
 document.getElementById("form").addEventListener("submit", function(e){
-    e.preventDefault();
+  e.preventDefault();
 
-    fetch(scriptURL,{
-        method:"POST",
-        body:JSON.stringify({
-            chef_name:chef_name.value,
-            chef_email:chef_email.value,
-            chef_class:chef_class.value,
-
-            m1_name:m1_name.value,
-            m1_class:m1_class.value,
-
-            m2_name:m2_name.value,
-            m2_class:m2_class.value,
-
-            m3_name:m3_name.value,
-            m3_class:m3_class.value,
-
-            m4_name:m4_name.value,
-            m4_class:m4_class.value
-        })
+  fetch(scriptURL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chef_name: chef_name.value,
+      chef_email: chef_email.value,
+      chef_class: chef_class.value,
+      m1_name: m1_name.value,
+      m1_class: m1_class.value,
+      m2_name: m2_name.value,
+      m2_class: m2_class.value,
+      m3_name: m3_name.value,
+      m3_class: m3_class.value,
+      m4_name: m4_name.value,
+      m4_class: m4_class.value
     })
-    .then(r=>r.json())
-    .then(d=>{
-        if(d.status==="success"){
-            document.getElementById("formBox").style.display="none";
-            document.getElementById("successBox").style.display="block";
-            document.getElementById("counter").innerText =
-              "Nombre d'équipes : " + d.count;
-        }
-    });
+  });
+
+  document.getElementById("formBox").style.display = "none";
+  document.getElementById("successBox").style.display = "block";
 });
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
