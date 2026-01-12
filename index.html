@@ -191,6 +191,12 @@ button{
 </div>
 </div>
 
+<div class="header">
+  <h2>IoT & AI Challenge</h2>
+  <img src="A_digital_graphic_banner_for_the_\"IoT_&_AI_Challen.png" alt="IoT & AI Banner" class="header-banner">
+  <p>Formulaire d'inscription par équipe</p>
+</div>
+
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbzlWEP0yCjesi6PdVpPTMVaYQMI-4UDkUhiM1BMFUZpIx41_lpP_BPXCZ6NESRmpbjIwA/exec";
 
@@ -201,27 +207,37 @@ const successBox = document.getElementById("successBox");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const formData = new FormData(form);
+  const payload = {
+    chef_name: document.getElementById("chef_name").value,
+    chef_class: document.getElementById("chef_class").value,
+    chef_email: document.getElementById("chef_email").value,
+    m1_name: document.getElementById("m1_name").value,
+    m1_class: document.getElementById("m1_class").value,
+    m2_name: document.getElementById("m2_name").value,
+    m2_class: document.getElementById("m2_class").value,
+    m3_name: document.getElementById("m3_name").value,
+    m3_class: document.getElementById("m3_class").value,
+    m4_name: document.getElementById("m4_name").value,
+    m4_class: document.getElementById("m4_class").value
+  };
 
   try {
     const res = await fetch(scriptURL, {
       method: "POST",
-      body: formData
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
     });
 
-    const text = await res.text();
+    const data = await res.text();
 
-    if (text === "SUCCESS") {
+    if (data === "SUCCESS") {
       formBox.style.display = "none";
       successBox.style.display = "block";
-    } 
-    else if (text === "EMAIL_EXISTS") {
+    } else if (data === "EMAIL_EXISTS") {
       alert("❌ Cet email est déjà utilisé");
-    } 
-    else if (text === "LIMIT_REACHED") {
+    } else if (data === "LIMIT_REACHED") {
       alert("❌ Le nombre maximum de 10 équipes est atteint");
-    } 
-    else {
+    } else {
       alert("❌ Erreur serveur");
     }
 
@@ -232,8 +248,10 @@ form.addEventListener("submit", async (e) => {
 });
 </script>
 
+
 </body>
 </html>
+
 
 
 
