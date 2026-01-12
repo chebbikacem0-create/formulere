@@ -70,6 +70,11 @@ body{
   margin-bottom:14px;
 }
 
+.row{
+  display:flex;
+  gap:10px;
+}
+
 label{
   display:block;
   font-size:13px;
@@ -124,33 +129,56 @@ button{
   <div class="form-body" id="formBox">
     <form id="form">
 
+      <!-- CHEF -->
       <div class="section-title">Chef du groupe</div>
+
       <div class="field">
-        <label>Nom et Prénom</label>
-        <input type="text" id="chef_name" required>
+        <label>Nom & Prénom – Classe</label>
+        <div class="row">
+          <input type="text" id="chef_name" placeholder="Nom et Prénom" required>
+          <input type="text" id="chef_class" placeholder="Classe" required>
+        </div>
       </div>
+
       <div class="field">
         <label>Adresse mail</label>
         <input type="email" id="chef_email" required>
       </div>
+
+      <!-- MEMBERS -->
+      <div class="section-title">Membres</div>
+
       <div class="field">
-        <label>Classe</label>
-        <input type="text" id="chef_class" required>
+        <label>Membre 1</label>
+        <div class="row">
+          <input type="text" id="m1_name" placeholder="Nom et Prénom">
+          <input type="text" id="m1_class" placeholder="Classe">
+        </div>
       </div>
 
-      <div class="section-title">Members</div>
+      <div class="field">
+        <label>Membre 2</label>
+        <div class="row">
+          <input type="text" id="m2_name" placeholder="Nom et Prénom">
+          <input type="text" id="m2_class" placeholder="Classe">
+        </div>
+      </div>
 
-      <div class="field"><label>Membre 1 – Nom & Prénom</label><input type="text" id="m1_name"></div>
-      <div class="field"><label>Membre 1 – Classe</label><input type="text" id="m1_class"></div>
+      <div class="field">
+        <label>Membre 3</label>
+        <div class="row">
+          <input type="text" id="m3_name" placeholder="Nom et Prénom">
+          <input type="text" id="m3_class" placeholder="Classe">
+        </div>
+      </div>
 
-      <div class="field"><label>Membre 2 – Nom & Prénom</label><input type="text" id="m2_name"></div>
-      <div class="field"><label>Membre 2 – Classe</label><input type="text" id="m2_class"></div>
-
-      <div class="field"><label>Membre 3 – Nom & Prénom</label><input type="text" id="m3_name"></div>
-      <div class="field"><label>Membre 3 – Classe</label><input type="text" id="m3_class"></div>
-
-      <div class="field"><label>Membre 4 – Nom & Prénom</label><input type="text" id="m4_name"></div>
-      <div class="field"><label>Membre 4 – Classe</label><input type="text" id="m4_class"></div>
+      <div class="field">
+        <label>Membre 4</label>
+        <div class="row">
+          <input type="text" id="m4_name" placeholder="Nom et Prénom">
+          <input type="text" id="m4_class" placeholder="Classe">
+        </div>
+      </div>
 
       <button type="submit">Valider l'inscription</button>
     </form>
@@ -163,26 +191,18 @@ button{
 
 </div>
 </div>
+
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbyvH2r1SaEmV3lUpz_ka_7odtY_sZDVX7hSYYR_VCvUoV1fIcKOfjfmzKCs1_bUWFCr6w/exec";
 
-document.getElementById("form").addEventListener("submit", async function(e){
+const form = document.getElementById("form");
+const formBox = document.getElementById("formBox");
+const successBox = document.getElementById("successBox");
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const formData = new FormData();
-
-  formData.append("chef_name", chef_name.value);
-  formData.append("chef_email", chef_email.value);
-  formData.append("chef_class", chef_class.value);
-
-  formData.append("m1_name", m1_name.value);
-  formData.append("m1_class", m1_class.value);
-  formData.append("m2_name", m2_name.value);
-  formData.append("m2_class", m2_class.value);
-  formData.append("m3_name", m3_name.value);
-  formData.append("m3_class", m3_class.value);
-  formData.append("m4_name", m4_name.value);
-  formData.append("m4_class", m4_class.value);
+  const formData = new FormData(form);
 
   try {
     const res = await fetch(scriptURL, {
@@ -195,9 +215,14 @@ document.getElementById("form").addEventListener("submit", async function(e){
     if (text === "SUCCESS") {
       formBox.style.display = "none";
       successBox.style.display = "block";
-    } else if (text === "EMAIL_EXISTS") {
-      alert("❌ Cet email est déjà inscrit");
-    } else {
+    } 
+    else if (text === "EMAIL_EXISTS") {
+      alert("❌ Cet email est déjà utilisé");
+    } 
+    else if (text === "LIMIT_REACHED") {
+      alert("❌ Le nombre maximum de 10 équipes est atteint");
+    } 
+    else {
       alert("❌ Erreur serveur");
     }
 
@@ -208,16 +233,7 @@ document.getElementById("form").addEventListener("submit", async function(e){
 });
 </script>
 
-
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
