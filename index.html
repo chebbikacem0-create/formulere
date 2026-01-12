@@ -167,37 +167,52 @@ button{
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbwmQs0FARex_6ifL6JH4na2He3M5yPrELLmq0OCZkLisB9hDV10Av6hs-bBYy6JnsX5/exec";
 
-document.getElementById("form").addEventListener("submit", function(e){
+document.getElementById("form").addEventListener("submit", async function(e){
   e.preventDefault();
 
-  fetch(scriptURL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      chef_name: chef_name.value,
-      chef_email: chef_email.value,
-      chef_class: chef_class.value,
-      m1_name: m1_name.value,
-      m1_class: m1_class.value,
-      m2_name: m2_name.value,
-      m2_class: m2_class.value,
-      m3_name: m3_name.value,
-      m3_class: m3_class.value,
-      m4_name: m4_name.value,
-      m4_class: m4_class.value
-    })
-  });
+  const payload = {
+    chef_name: document.getElementById("chef_name").value,
+    chef_email: document.getElementById("chef_email").value,
+    chef_class: document.getElementById("chef_class").value,
+    m1_name: document.getElementById("m1_name").value,
+    m1_class: document.getElementById("m1_class").value,
+    m2_name: document.getElementById("m2_name").value,
+    m2_class: document.getElementById("m2_class").value,
+    m3_name: document.getElementById("m3_name").value,
+    m3_class: document.getElementById("m3_class").value,
+    m4_name: document.getElementById("m4_name").value,
+    m4_class: document.getElementById("m4_class").value
+  };
 
-  document.getElementById("formBox").style.display = "none";
-  document.getElementById("successBox").style.display = "block";
+  try {
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (data.status === "success") {
+      document.getElementById("formBox").style.display = "none";
+      document.getElementById("successBox").style.display = "block";
+    } else if (data.message === "EMAIL_EXISTS") {
+      alert("❌ Cet email est déjà inscrit");
+    } else {
+      alert("❌ Erreur : " + data.message);
+    }
+
+  } catch (err) {
+    alert("❌ Problème de connexion");
+    console.error(err);
+  }
 });
 </script>
 
+
 </body>
 </html>
+
 
 
 
