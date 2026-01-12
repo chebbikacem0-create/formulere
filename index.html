@@ -85,7 +85,6 @@ button{
 
     <div class="header">
       <h2>IoT & AI Challenge</h2>
-      <img src="A_digital_graphic_banner_for_the_\"IoT_&_AI_Challen.png" alt="IoT & AI Banner">
       <p>Formulaire d'inscription par équipe</p>
     </div>
 
@@ -155,7 +154,7 @@ button{
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxNCTtrDOJUUwmRPKC5juLHQXQ63xDUlbyMKeJS91qtUw_fxOr4SQx8zpRTm20tKOjvAQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxCCz5A0hqLd1jBShnD0RWlQp3ZCDODK_fsylHM90ldO_IZO-XxbBK1tAkaj_gZCrAPhg/exec"; // ضع رابط Web App هنا
 
 const form = document.getElementById("form");
 const formBox = document.getElementById("formBox");
@@ -164,27 +163,10 @@ const successBox = document.getElementById("successBox");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const payload = {
-    chef_name: document.getElementById("chef_name").value,
-    chef_class: document.getElementById("chef_class").value,
-    chef_email: document.getElementById("chef_email").value,
-    m1_name: document.getElementById("m1_name").value,
-    m1_class: document.getElementById("m1_class").value,
-    m2_name: document.getElementById("m2_name").value,
-    m2_class: document.getElementById("m2_class").value,
-    m3_name: document.getElementById("m3_name").value,
-    m3_class: document.getElementById("m3_class").value,
-    m4_name: document.getElementById("m4_name").value,
-    m4_class: document.getElementById("m4_class").value
-  };
+  const formData = new FormData(form);
 
   try {
-    const res = await fetch(scriptURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
+    const res = await fetch(scriptURL, { method:"POST", body:formData });
     const text = await res.text();
 
     if (text === "SUCCESS") {
@@ -207,6 +189,7 @@ form.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
