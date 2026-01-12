@@ -8,10 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family:'Cairo', sans-serif;
-}
+*{box-sizing:border-box; font-family:'Cairo', sans-serif;}
 body{
   margin:0;
   min-height:100vh;
@@ -24,11 +21,7 @@ body{
   padding:16px;
 }
 
-.container{
-  width:100%;
-  max-width:520px;
-}
-
+.container{width:100%; max-width:520px;}
 .card{
   background:#fff;
   border-radius:18px;
@@ -41,46 +34,22 @@ body{
   color:#fff;
   padding:22px;
   text-align:center;
+  position:relative;
 }
 
-.header h2{
-  margin:0;
-  font-size:20px;
+.header h2{margin:0; font-size:20px;}
+.header p{font-size:13px; margin-top:6px; opacity:.9;}
+.header img{
+  max-width:100%;
+  margin-top:10px;
+  border-radius:12px;
 }
 
-.header p{
-  font-size:13px;
-  margin-top:6px;
-  opacity:.9;
-}
-
-.form-body{
-  padding:26px;
-}
-
-.section-title{
-  font-size:14px;
-  font-weight:700;
-  margin:18px 0 10px;
-  color:#1f3c88;
-}
-
-.field{
-  margin-bottom:14px;
-}
-
-.row{
-  display:flex;
-  gap:10px;
-}
-
-label{
-  display:block;
-  font-size:13px;
-  font-weight:600;
-  margin-bottom:5px;
-}
-
+.form-body{padding:26px;}
+.section-title{font-size:14px; font-weight:700; margin:18px 0 10px; color:#1f3c88;}
+.field{margin-bottom:14px;}
+.row{display:flex; gap:10px;}
+label{display:block; font-size:13px; font-weight:600; margin-bottom:5px;}
 input{
   width:100%;
   padding:11px;
@@ -88,12 +57,7 @@ input{
   border:1px solid #ccc;
   font-size:14px;
 }
-
-input:focus{
-  outline:none;
-  border-color:#1f3c88;
-}
-
+input:focus{outline:none; border-color:#1f3c88;}
 button{
   width:100%;
   padding:14px;
@@ -106,7 +70,6 @@ button{
   cursor:pointer;
   margin-top:18px;
 }
-
 .success{
   display:none;
   padding:40px 25px;
@@ -118,80 +81,81 @@ button{
 <body>
 
 <div class="container">
-<div class="card">
+  <div class="card">
 
-  <div class="header">
-    <h2>IoT & AI Challenge</h2>
-    <p>Formulaire d'inscription par équipe</p>
+    <div class="header">
+      <h2>IoT & AI Challenge</h2>
+      <img src="A_digital_graphic_banner_for_the_\"IoT_&_AI_Challen.png" alt="IoT & AI Banner">
+      <p>Formulaire d'inscription par équipe</p>
+    </div>
+
+    <div class="form-body" id="formBox">
+      <form id="form">
+
+        <!-- CHEF -->
+        <div class="section-title">Chef du groupe</div>
+        <div class="field">
+          <label>Nom & Prénom – Classe</label>
+          <div class="row">
+            <input type="text" id="chef_name" placeholder="Nom et Prénom" required>
+            <input type="text" id="chef_class" placeholder="Classe" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Adresse mail</label>
+          <input type="email" id="chef_email" placeholder="Email" required>
+        </div>
+
+        <!-- MEMBERS -->
+        <div class="section-title">Membres</div>
+
+        <div class="field">
+          <label>Membre 1</label>
+          <div class="row">
+            <input type="text" id="m1_name" placeholder="Nom et Prénom">
+            <input type="text" id="m1_class" placeholder="Classe">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Membre 2</label>
+          <div class="row">
+            <input type="text" id="m2_name" placeholder="Nom et Prénom">
+            <input type="text" id="m2_class" placeholder="Classe">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Membre 3</label>
+          <div class="row">
+            <input type="text" id="m3_name" placeholder="Nom et Prénom">
+            <input type="text" id="m3_class" placeholder="Classe">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Membre 4</label>
+          <div class="row">
+            <input type="text" id="m4_name" placeholder="Nom et Prénom">
+            <input type="text" id="m4_class" placeholder="Classe">
+          </div>
+        </div>
+
+        <button type="submit">Valider l'inscription</button>
+      </form>
+    </div>
+
+    <div class="success" id="successBox">
+      <h3>✅ Inscription réussie</h3>
+      <p>Votre équipe a été enregistrée avec succès.</p>
+    </div>
+
   </div>
-
-  <div class="form-body" id="formBox">
-    <form id="form">
-
-      <!-- CHEF -->
-      <div class="section-title">Chef du groupe</div>
-
-      <div class="field">
-        <label>Nom & Prénom – Classe</label>
-        <div class="row">
-          <input type="text" id="chef_name" placeholder="Nom et Prénom" required>
-          <input type="text" id="chef_class" placeholder="Classe" required>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Adresse mail</label>
-        <input type="email" id="chef_email" required>
-      </div>
-
-      <!-- MEMBERS -->
-      <div class="section-title">Membres</div>
-
-      <div class="field">
-        <label>Membre 1</label>
-        <div class="row">
-          <input type="text" id="m1_name" placeholder="Nom et Prénom">
-          <input type="text" id="m1_class" placeholder="Classe">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Membre 2</label>
-        <div class="row">
-          <input type="text" id="m2_name" placeholder="Nom et Prénom">
-          <input type="text" id="m2_class" placeholder="Classe">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Membre 3</label>
-        <div class="row">
-          <input type="text" id="m3_name" placeholder="Nom et Prénom">
-          <input type="text" id="m3_class" placeholder="Classe">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Membre 4</label>
-        <div class="row">
-          <input type="text" id="m4_name" placeholder="Nom et Prénom">
-          <input type="text" id="m4_class" placeholder="Classe">
-        </div>
-      </div>
-
-      <button type="submit">Valider l'inscription</button>
-    </form>
-  </div>
-
-  <div class="success" id="successBox">
-    <h3>✅ Inscription réussie</h3>
-    <p>Votre équipe a été enregistrée avec succès.</p>
-  </div>
-
 </div>
-</div>
+
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzlWEP0yCjesi6PdVpPTMVaYQMI-4UDkUhiM1BMFUZpIx41_lpP_BPXCZ6NESRmpbjIwA/exec";
+const scriptURL = "PASTE_YOUR_DEPLOYED_WEB_APP_URL_HERE";
 
 const form = document.getElementById("form");
 const formBox = document.getElementById("formBox");
@@ -221,17 +185,17 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(payload)
     });
 
-    const data = await res.text();
+    const text = await res.text();
 
-    if (data === "SUCCESS") {
+    if (text === "SUCCESS") {
       formBox.style.display = "none";
       successBox.style.display = "block";
-    } else if (data === "EMAIL_EXISTS") {
+    } else if (text === "EMAIL_EXISTS") {
       alert("❌ Cet email est déjà utilisé");
-    } else if (data === "LIMIT_REACHED") {
+    } else if (text === "LIMIT_REACHED") {
       alert("❌ Le nombre maximum de 10 équipes est atteint");
     } else {
-      alert("❌ Erreur serveur");
+      alert("❌ Erreur serveur: " + text);
     }
 
   } catch (err) {
@@ -241,9 +205,9 @@ form.addEventListener("submit", async (e) => {
 });
 </script>
 
-
 </body>
 </html>
+
 
 
 
