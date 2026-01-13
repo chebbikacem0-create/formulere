@@ -39,13 +39,12 @@ button{width:100%; padding:14px; background:#1f3c88; color:#fff; border:none; bo
       <form id="form">
         <!-- CHEF -->
        <div class="section-title">Chef du groupe</div>
-        
         <div class="field">
-          <label>Nom de groupe</label>
-          <div class="row">
-    <input type="text" id="chef_nameteam" name="chef_nameteam" placeholder="Nom du groupe" required>
-    
-  </div>
+  <label>Nom du groupe</label>
+  <input type="text" name="group_name" placeholder="Nom du groupe" required>
+</div>
+        <div class="field">
+          
   <label>Nom & Prénom – Classe</label>
   <div class="row">
     <input type="text" id="chef_name" name="chef_name" placeholder="Nom et Prénom" required>
@@ -153,6 +152,7 @@ form.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
