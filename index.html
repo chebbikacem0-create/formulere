@@ -112,13 +112,16 @@ button{width:100%; padding:14px; background:#1f3c88; color:#fff; border:none; bo
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzotiT_boH_ctl0d21GndA__qXMPNaeS3mZcm__SZ9Lc992lxXxwmvudrzBGr-VDan2hg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyrMgDUp1l2WD8M1aNZDe4DTYNF2DCjR6BTF0_ZCimATafJ9DScYm3w6v8pnlwetheVzQ/exec"; // ضع هنا رابط Web App من Google Script
 
 const form = document.getElementById("form");
+const formBox = document.getElementById("formBox");
+const successBox = document.getElementById("successBox");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  // اجمع كل البيانات في كائن
   const payload = {
     group_name: form.group_name.value,
     chef_name: form.chef_name.value,
@@ -136,21 +139,19 @@ form.addEventListener("submit", async (e) => {
   };
 
   try {
-    const res = await fetch("YOUR_SCRIPT_URL_HERE", {
+    const res = await fetch(scriptURL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(payload)
     });
 
     const text = await res.text();
 
     if (text === "SUCCESS") {
-      alert("✅ Inscription réussie");
-      form.reset();
-    } else if (text === "EMAIL_EXISTS") {
-      alert("❌ Cet email est déjà utilisé");
-    } else if (text === "LIMIT_REACHED") {
-      alert("❌ Le nombre maximum de 10 équipes est atteint");
+      formBox.style.display = "none";
+      successBox.style.display = "block";
     } else {
       alert("❌ Erreur serveur: " + text);
     }
@@ -160,12 +161,12 @@ form.addEventListener("submit", async (e) => {
     console.error(err);
   }
 });
-
-
 </script>
+
 
 </body>
 </html>
+
 
 
 
