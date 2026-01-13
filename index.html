@@ -112,7 +112,7 @@ button{width:100%; padding:14px; background:#1f3c88; color:#fff; border:none; bo
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwW7qFkD4XgUI2uQeDM6Z8HCbi2A-KTFNjfhHInEmT3FihBTRoXenYeAwp-AhX81IT1Vw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzotiT_boH_ctl0d21GndA__qXMPNaeS3mZcm__SZ9Lc992lxXxwmvudrzBGr-VDan2hg/exec";
 
 const form = document.getElementById("form");
 
@@ -147,19 +147,26 @@ form.addEventListener("submit", async (e) => {
     if (text === "SUCCESS") {
       alert("✅ Inscription réussie");
       form.reset();
+    } else if (text === "EMAIL_EXISTS") {
+      alert("❌ Cet email est déjà utilisé");
+    } else if (text === "LIMIT_REACHED") {
+      alert("❌ Le nombre maximum de 10 équipes est atteint");
     } else {
       alert("❌ Erreur serveur: " + text);
     }
+
   } catch (err) {
     alert("❌ Problème de connexion");
     console.error(err);
   }
 });
 
+
 </script>
 
 </body>
 </html>
+
 
 
 
