@@ -115,43 +115,52 @@ button{width:100%; padding:14px; background:#1f3c88; color:#fff; border:none; bo
 const scriptURL = "https://script.google.com/macros/s/AKfycbwW7qFkD4XgUI2uQeDM6Z8HCbi2A-KTFNjfhHInEmT3FihBTRoXenYeAwp-AhX81IT1Vw/exec";
 
 const form = document.getElementById("form");
-const formBox = document.getElementById("formBox");
-const successBox = document.getElementById("successBox");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // استخدم FormData مباشرة
-  const formData = new FormData(form);
+  const payload = {
+    group_name: form.group_name.value,
+    chef_name: form.chef_name.value,
+    chef_class: form.chef_class.value,
+    chef_email: form.chef_email.value,
+    chef_phone: form.chef_phone.value,
+    m1_name: form.m1_name.value,
+    m1_class: form.m1_class.value,
+    m2_name: form.m2_name.value,
+    m2_class: form.m2_class.value,
+    m3_name: form.m3_name.value,
+    m3_class: form.m3_class.value,
+    m4_name: form.m4_name.value,
+    m4_class: form.m4_class.value
+  };
 
   try {
-    const res = await fetch(scriptURL, {
+    const res = await fetch("YOUR_SCRIPT_URL_HERE", {
       method: "POST",
-      body: formData
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
     });
 
     const text = await res.text();
 
     if (text === "SUCCESS") {
-      formBox.style.display = "none";
-      successBox.style.display = "block";
-    } else if (text === "EMAIL_EXISTS") {
-      alert("❌ Cet email est déjà utilisé");
-    } else if (text === "LIMIT_REACHED") {
-      alert("❌ Le nombre maximum de 10 équipes est atteint");
+      alert("✅ Inscription réussie");
+      form.reset();
     } else {
       alert("❌ Erreur serveur: " + text);
     }
-
   } catch (err) {
     alert("❌ Problème de connexion");
     console.error(err);
   }
 });
+
 </script>
 
 </body>
 </html>
+
 
 
 
